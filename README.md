@@ -1,4 +1,4 @@
-# **Hacker Rank PS 3M**
+# **Hacker Rank Problem Solving 3 Months Preparation Kit**
 
 | <br />Week |                    Challenges                    |
 | :---------: | :-----------------------------------------------: |
