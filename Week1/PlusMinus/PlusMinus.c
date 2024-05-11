@@ -71,10 +71,10 @@ int main()
 
 char* readline() {
     // Allocate initial buffer size
-    size_t alloc_length = 1024;         // Set initial buffer size to 1024 characters
-    size_t data_length = 0;             // Initialize the length of data read to 0
+    size_t alloc_length = 1024;             // Set initial buffer size to 1024 characters
+    size_t data_length = 0;                 // Initialize the length of data read to 0
 
-    char* data = malloc(alloc_length);  // Allocate memory for data buffer
+    char* data = malloc(alloc_length);      // Allocate memory for data buffer
 
     while (true) {                                                      // Start an infinite loop
         char* cursor = data + data_length;                              // Set the cursor to the end of data buffer
