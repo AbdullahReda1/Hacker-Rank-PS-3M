@@ -1,2 +1,4 @@
+# Ignore all comming files
 *.vscode
 *.exe
+*.pdf
