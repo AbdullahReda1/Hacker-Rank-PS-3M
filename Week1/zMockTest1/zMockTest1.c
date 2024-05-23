@@ -63,6 +63,67 @@ int findMedian(int arr_count, int* arr) {
     }
 }
 
+int find_Median(int arr_count, int* arr) {
+    // Create an auxiliary stack for iterative quicksort
+    int* stack = (int*)malloc(arr_count * sizeof(int));
+    int top = -1;
+
+    // Push initial values of low and high to stack
+    int low = 0;
+    int high = arr_count - 1;
+    stack[++top] = low;
+    stack[++top] = high;
+
+    // Keep popping from stack while it is not empty
+    while (top >= 0) {
+        // Pop high and low
+        high = stack[top--];
+        low = stack[top--];
+
+        // Partition process
+        int pivot = arr[high];
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                // Swap arr[i] and arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        // Swap arr[i + 1] and arr[high] (or pivot)
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+        int p = i + 1;
+
+        // Push left side to stack
+        if (p - 1 > low) {
+            stack[++top] = low;
+            stack[++top] = p - 1;
+        }
+
+        // Push right side to stack
+        if (p + 1 < high) {
+            stack[++top] = p + 1;
+            stack[++top] = high;
+        }
+    }
+
+    // Free the stack memory
+    free(stack);
+
+    // Calculate and return the median
+    if (arr_count % 2 == 0) {
+        int median1 = arr[(arr_count / 2) - 1];
+        int median2 = arr[arr_count / 2];
+        return (median1 + median2) / 2;
+    } else {
+        return arr[arr_count / 2];
+    }
+}
+
 int main()
 {
     int n = parse_int(ltrim(rtrim(readline())));
@@ -76,7 +137,9 @@ int main()
         *(arr + index) = arr_item;
     }
 
-    int result = findMedian(n, arr);
+    //int result = findMedian(n, arr);
+
+    int result = find_Median(n, arr);       /* Best one */
 
     printf("%d\n", result);
 
