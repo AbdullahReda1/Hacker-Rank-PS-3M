@@ -82,21 +82,22 @@ int find_Median(int arr_count, int* arr) {
 
         // Partition process
         int pivot = arr[high];
-        int i = low - 1;
+        int index_of_partition = low - 1;
         for (int j = low; j < high; j++) {
             if (arr[j] < pivot) {
-                i++;
-                // Swap arr[i] and arr[j]
-                int temp = arr[i];
-                arr[i] = arr[j];
+                index_of_partition++;
+                // Swap arr[index_of_partition] and arr[j]
+                int temp = arr[index_of_partition];
+                arr[index_of_partition] = arr[j];
                 arr[j] = temp;
             }
         }
-        // Swap arr[i + 1] and arr[high] (or pivot)
-        int temp = arr[i + 1];
-        arr[i + 1] = arr[high];
+        // Swap arr[index_of_partition + 1] and arr[high] (or pivot)
+        int temp = arr[index_of_partition + 1];
+        arr[index_of_partition + 1] = arr[high];
         arr[high] = temp;
-        int p = i + 1;
+		
+        int p = index_of_partition + 1;
 
         // Push left side to stack
         if (p - 1 > low) {
